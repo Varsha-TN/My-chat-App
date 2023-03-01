@@ -57,6 +57,13 @@ body {
 
 .list {
   list-style-type: none;
+  /* display: inline;
+  padding: 4px 0 5px;
+  background-color: hwb(198 0% 0% / 0.982);
+  box-sizing: content-box;
+  letter-spacing: inherit;
+  border-radius: 5px;
+  margin:10px; */
 }
 
 .SideNav{

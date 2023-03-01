@@ -1,8 +1,8 @@
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
 import './App.css';
 import { SidebarData } from "./components/SidebarData";
-
-
 
 function App() {
   const [message, setMessage] = useState("");
@@ -61,10 +61,11 @@ function App() {
                 return <li className="list">{message?.text}</li>;
               })}
           </ul>
-          <input value={message} onChange={handleInputChange} style={{  marginRight:"20px"}}/>   
-          <button onClick={handleSendMsg}>Send Message</button>
-          <input type="file" onChange={handleUpload} style={{  margin:"20px"}}/>
-                {file && <ImageThumb image={file} />}
+          <TextField  label="Type Message!" variant="outlined" value={message} onChange={handleInputChange} style={{  marginRight:"20px"}}/>   
+          <Button variant="contained" onClick={handleSendMsg}>Send Message</Button>
+          <TextField type="file" onChange={handleUpload} style={{  margin:"20px"}} />
+              
+                {file && <ImageThumb image={file}  />}
         </div>
       </div>
     </div>
@@ -76,3 +77,4 @@ const ImageThumb = ({ image }) => {
 };
 
 export default App;
+

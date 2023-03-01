@@ -1,7 +1,7 @@
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import React, { useState } from 'react';
-import './App.css';
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import React, { useState } from "react";
+import "./App.css";
 import { SidebarData } from "./components/SidebarData";
 
 function App() {
@@ -18,8 +18,8 @@ function App() {
     setFile(event.target.files[0]);
   }
   const handleSendMsg = () => {
-    if(!activeUser){
-      console.error("please select user ")
+    if (!activeUser) {
+      console.error("please select user ");
     }
     console.log("Send");
     let messageObj = {
@@ -32,28 +32,30 @@ function App() {
 
   return (
     <div className="App">
-      <div className="SideNav" >
-        <div className="Sidebar" style={{ width: "25%" }}>
-          <div className="Sidebar">
-            <ul className="SidebarList">
-              {SidebarData.map((key, val) => {
-                return (
-                  <li
-                    key={key.id}
-                    className="row"
-                    onClick={() => {
-                      setActiveUser(key);
-                    }}
-                  >
-                    <div id="icon">{key.icon}</div>
-                    <div id="title">{key.name}</div>
-                  </li>
-                );
-              })}
-            </ul>
+      <div className="SideNav">
+        <div className="row">
+          <div className="col-md-4">
+            <div className="Sidebar">
+              <ul className="SidebarList">
+                {SidebarData.map((key, val) => {
+                  return (
+                    <li
+                      key={key.id}
+                      className="row"
+                      onClick={() => {
+                        setActiveUser(key);
+                      }}
+                    >
+                      <div id="icon">{key.icon}</div>
+                      <div id="title">{key.name}</div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </div>
-        <div  className="message">
+        <div className="col-md-8">
           <h1> {activeUser?.name}</h1>
           <ul>
             {messageArr?.length > 0 &&
@@ -61,11 +63,25 @@ function App() {
                 return <li className="list">{message?.text}</li>;
               })}
           </ul>
-          <TextField  label="Type Message!" variant="outlined" value={message} onChange={handleInputChange} style={{  marginRight:"20px"}}/>   
-          <Button variant="contained" onClick={handleSendMsg}>Send Message</Button>
-          <TextField type="file" onChange={handleUpload} style={{  margin:"20px"}} />
-              
-                {file && <ImageThumb image={file}  />}
+          <div className="messageBox">
+            <TextField
+              label="Type Message!"
+              variant="outlined"
+              value={message}
+              onChange={handleInputChange}
+              style={{ marginRight: "20px" }}
+            />
+            <Button variant="contained" onClick={handleSendMsg}>
+              Send Message
+            </Button>
+            <TextField
+              type="file"
+              onChange={handleUpload}
+              style={{ margin: "20px" , display:"block"}}
+            />
+
+            {file && <ImageThumb image={file} />}
+          </div>
         </div>
       </div>
     </div>
@@ -77,4 +93,3 @@ const ImageThumb = ({ image }) => {
 };
 
 export default App;
-

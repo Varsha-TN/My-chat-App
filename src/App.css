@@ -1,6 +1,7 @@
 .App {
   width: 100vw;
   height: 100vh;
+  display: flex;
 }
 
 body {
@@ -10,7 +11,7 @@ body {
 
 .Sidebar {
   height: 100%;
-  width: 300px;
+  width: 180px;
   background-color: #2f4050;
   /* background: rgb(195, 206, 206); */
 }
@@ -41,6 +42,9 @@ body {
   background-color: #293846;
 }
 
+.row {
+  list-style-type: none;
+}
 .row #icon {
   flex: 30%;
   display: grid;
@@ -49,4 +53,26 @@ body {
 
 .row #title {
   flex: 70%;
+}
+
+.list {
+  list-style-type: none;
+}
+
+.SideNav{
+  display : flex
+}
+
+.message {
+  width: 60%;
+  margin : 133px;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+}
+
+.upload-box{
+  margin-right: 20px;
 }

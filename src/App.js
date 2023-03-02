@@ -1,17 +1,36 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { SidebarData } from "./components/SidebarData";
 
 function App() {
   const [message, setMessage] = useState("");
   const [activeUser, setActiveUser] = useState("");
-  const [messageArr, setMessageArr] = useState([]);
+  const [messageArr, setMessageArr] =  useState(() => {
+
+    const savedTodos = localStorage.getItem("messageArr");
+
+    if (savedTodos) {
+   
+      return JSON.parse(savedTodos);
+
+    } else {
+     
+      return [];
+    }
+  });
   const [file, setFile] = useState("");
+
+  useEffect(() => {
+
+    localStorage.setItem("messageArr", JSON.stringify(messageArr));
+    // return () => setMessageArr("");
+  }, [messageArr]);
 
   const handleInputChange = (e) => {
     setMessage(e.target.value);
+    // setMessageArr("");
   };
 
   function handleUpload(event) {
@@ -21,7 +40,7 @@ function App() {
     if (!activeUser) {
       console.error("please select user ");
     }
-    console.log("Send");
+    console.log("Send", messageArr);
     let messageObj = {
       userId: activeUser?.id,
       text: message
@@ -57,12 +76,13 @@ function App() {
         </div>
         <div className="col-md-8">
           <h1> {activeUser?.name}</h1>
-          <ul>
+         
+          <ul>           
             {messageArr?.length > 0 &&
               messageArr?.map((message) => {
-                return <li className="list">{message?.text}</li>;
-              })}
-          </ul>
+                return <li className="list"> {message?.text}</li>;
+              })}             
+          </ul> 
           <div className="messageBox">
             <TextField
               label="Type Message!"
